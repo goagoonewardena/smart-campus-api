@@ -1,0 +1,21 @@
+# Maven build output
+/smart-campus/target/
+**/target/
+
+# NetBeans local metadata
+**/nbproject/private/
+**/nbactions.xml
+**/nb-configuration.xml
+
+# IDE metadata
+.idea/
+*.iml
+.vscode/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
