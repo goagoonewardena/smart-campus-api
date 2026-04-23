@@ -1,6 +1,6 @@
 # Smart Campus Sensor & Room Management API
 
-**UOW_ID:** w2120165 | **IIT_ID:** 20240971
+**UOW_ID:** w2120165  |  **IIT_ID:** 20240971
 
 ## Overview
 
@@ -27,7 +27,7 @@ The system is built as a Java Web Application (.war) deployed on Apache Tomcat 9
 | Storage | In-memory ConcurrentHashMap (no database) |
 | IDE | Apache NetBeans |
 
-> This project uses Jersey 2.35 + Tomcat 9.x to maintain compatibility with the javax.ws.rs.* namespace. Do not upgrade to Jersey 3.x or Tomcat 10.x without updating all imports to jakarta.*.
+> Note to consider - This project uses Jersey 2.35 + Tomcat 9.x to maintain compatibility with the javax.ws.rs.* namespace. Do not upgrade to Jersey 3.x or Tomcat 10.x without updating all imports to jakarta.*.
 
 ---
 
@@ -42,10 +42,15 @@ The system is built as a Java Web Application (.war) deployed on Apache Tomcat 9
 ### Steps
 
 **1. Clone the repository:**
-```bash
-git clone https://github.com/[YOUR-GITHUB-USERNAME]/smart-campus-api.git
-cd smart-campus-api
-```
+
+https://github.com/goagoonewardena/smart-campus-api.git
+
+you can clone this project using the above github clone URL, First you have to open netbeans then at the top (header area of netbeans) has Team, click on it then select Git and then clone, a window will appear asking for the Respository URL, add the above URL and clone into clone into a any location in your computer, if they ask for any username or password incase fill it. Finally click Finish then the project will be opened. 
+
+or 
+
+(optional) - You can also directly download the zip file from github and then unzip it, then open in netbeans.
+
 
 **2. Build the project:**
 
@@ -55,39 +60,36 @@ Right-click project → Clean and Build
 Wait for BUILD SUCCESS in the output window
 ```
 
-Option B — Using Maven terminal:
-```bash
-mvn clean package
-```
-
 This generates: `target/smart-campus-1.0.0.war`
+
 
 **3. Start Apache Tomcat FIRST:**
 
-Navigate to your Tomcat bin folder and run:
-```
-[TOMCAT_HOME]\bin\startup.bat
-```
+You have to download apache tomcat from the official website - search from google and then click downloads then shows binary documentation, there you can find 64-bit Windows zip,, download that zip and unzip it.
+
+After that go to netbeans where the project was opened under the projects area, next to projects area there is Services then you can see Servers option, right click it and add server, select Apache Tomcat, then the window asks for a server location browse the location where you downloaded the apache tomcat to your computer, it would show apache-tomcat-9.0.117-windows-x64 folder, but don't open it, open the sub folder which is showing apache-tomcat-9.0.117, click open, (optional - they might ask for username or password fill it if needed.), then click finish. The tomcat server option would appear right under the Servers area of Services. you can right click on tomcat server under Servers and click start.
 
 Wait until the Tomcat console shows:
 ```
 Server startup in [XXXX] milliseconds
 ```
 
-> Tomcat must be running BEFORE you run the project in NetBeans.
+> Note to consider - Tomcat must be running BEFORE you run the project in NetBeans.
+
 
 **4. Run the project in NetBeans:**
 ```
-Right-click project → Run
+Right-click project - Run
 NetBeans will deploy the WAR file to the already running Tomcat server
 ```
+After running the project it would direct to the web page with the expected output
 
 **5. Access the API:**
 ```
-http://localhost:8081/smart-campus/api/v1/
+example - http://localhost:8081/smart-campus/api/v1/
 ```
 
-> Important rebuild order: Always Stop Tomcat → Clean and Build → Start Tomcat → Run project. Never rebuild while Tomcat is running.
+> Note to consider - Important rebuild order: Always Stop Tomcat → Clean and Build → Start Tomcat → Run project. Never rebuild while Tomcat is running.
 
 ---
 
