@@ -1,3 +1,9 @@
+/**
+ * Name - Gethmi Goonewardena
+ * IIT ID - 20240971
+ * UOW ID - w2120165
+ */
+
 package com.smartcampus;
 
 import com.smartcampus.filters.ApiLoggingFilter;
@@ -13,24 +19,32 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 /**
- * Configures Jakarta RESTful Web Services for the application.
- * @author Juneau
+ * JAX-RS Application Configuration class.
+ * Manually registers all resource classes, exception mappers,etc..
  */
 public class JakartaRestConfiguration extends Application {
-
+    
+    /**
+     * Returns the set of all JAX-RS components to be registered.
+     * This includes resource classes, exception mappers and filters.
+     * @return Set of Class objects representing all registered components
+     */
 	@Override
 	public Set<Class<?>> getClasses() {
 		Set<Class<?>> classes = new HashSet<>();
 
+                // Register resource classes (API endpoints)
 		classes.add(DiscoveryResource.class);
 		classes.add(RoomResource.class);
 		classes.add(SensorResource.class);
 
+                // Register exception mappers (error handling)
 		classes.add(RoomNotEmptyExceptionMapper.class);
 		classes.add(LinkedResourceNotFoundExceptionMapper.class);
 		classes.add(SensorUnavailableExceptionMapper.class);
 		classes.add(GlobalExceptionMapper.class);
 
+                // Register filters (logging)
 		classes.add(ApiLoggingFilter.class);
 		return classes;
 	}

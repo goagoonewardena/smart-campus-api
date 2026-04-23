@@ -200,7 +200,7 @@ curl -X DELETE http://localhost:8081/smart-campus/api/v1/rooms/LIB-301
 
 ---
 
-## Video Deomstration ##
+## Video Deomstration
 
 The video was recorded using zoom and the video includes about my student details, introduction to how the project works and the postman testing for endpoints, etc..
 
