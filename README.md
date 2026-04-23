@@ -305,4 +305,4 @@ smart-campus-api/
 
 ---
 
-## This project smart-campus-api is submitted as part of the coursework of 5COSC022W Client-Server Architectures at the University of Westminster. All rights reserved
+**This project smart-campus-api is submitted as part of the coursework of 5COSC022W Client-Server Architectures at the Informatics Institute of Technology affilated with the University of Westminster. All rights reserved**
