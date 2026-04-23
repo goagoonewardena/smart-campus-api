@@ -89,6 +89,21 @@ After running the project it would direct to the web page with the expected outp
 example - http://localhost:8081/smart-campus/api/v1/
 ```
 
+```
+Expected output:
+
+{
+  "apiName": "Smart Campus Sensor & Room Management API",
+  "version": "v1",
+  "adminContact": "admin@smartcampus.ac.uk",
+  "resources": {
+    "rooms": "/api/v1/rooms",
+    "sensors": "/api/v1/sensors"
+  }
+}
+
+```
+
 > Note to consider - Important rebuild order: Always Stop Tomcat → Clean and Build → Start Tomcat → Run project. Never rebuild while Tomcat is running.
 
 ---
