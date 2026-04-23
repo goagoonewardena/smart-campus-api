@@ -1,6 +1,6 @@
 # Smart Campus Sensor & Room Management API
 
-**UOW_ID:** w[YOUR-UOW-ID] | **IIT_ID:** [YOUR-IIT-ID]
+**UOW_ID:** w2120165 | **IIT_ID:** 20240971
 
 ## Overview
 
@@ -27,7 +27,7 @@ The system is built as a Java Web Application (.war) deployed on Apache Tomcat 9
 | Storage | In-memory ConcurrentHashMap (no database) |
 | IDE | Apache NetBeans |
 
-> ⚠️ This project uses Jersey 2.35 + Tomcat 9.x to maintain compatibility with the javax.ws.rs.* namespace. Do not upgrade to Jersey 3.x or Tomcat 10.x without updating all imports to jakarta.*.
+> This project uses Jersey 2.35 + Tomcat 9.x to maintain compatibility with the javax.ws.rs.* namespace. Do not upgrade to Jersey 3.x or Tomcat 10.x without updating all imports to jakarta.*.
 
 ---
 
@@ -74,7 +74,7 @@ Wait until the Tomcat console shows:
 Server startup in [XXXX] milliseconds
 ```
 
-> ⚠️ Tomcat must be running BEFORE you run the project in NetBeans.
+> Tomcat must be running BEFORE you run the project in NetBeans.
 
 **4. Run the project in NetBeans:**
 ```
@@ -87,7 +87,7 @@ NetBeans will deploy the WAR file to the already running Tomcat server
 http://localhost:8081/smart-campus/api/v1/
 ```
 
-> ⚠️ Important rebuild order: Always Stop Tomcat → Clean and Build → Start Tomcat → Run project. Never rebuild while Tomcat is running.
+> Important rebuild order: Always Stop Tomcat → Clean and Build → Start Tomcat → Run project. Never rebuild while Tomcat is running.
 
 ---
 
