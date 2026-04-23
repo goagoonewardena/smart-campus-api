@@ -58,24 +58,31 @@ public class RoomResource {
         }
         return Response.ok(room).build();
     }
+    @GET
+    @Path("/crash")
+    public Response crash() {
+        String s = null;
+        s.length(); // forces NullPointerException
+        return Response.ok().build();
+    }
 
     @DELETE
     @Path("/{roomId}")
     public Response deleteRoom(@PathParam("roomId") String roomId) {
         Map<String, Room> rooms = CampusDataStore.rooms();
         Room room = rooms.get(roomId);
-
         if (room == null) {
-            return Response.noContent().build();
+            throw new WebApplicationException("Room not found for id: " + roomId, Response.Status.NOT_FOUND);
         }
-
         if (room.getSensorIds() != null && !room.getSensorIds().isEmpty()) {
             throw new RoomNotEmptyException("Room '" + roomId + "' cannot be deleted because sensors are still assigned.");
         }
-
         rooms.remove(roomId);
-        return Response.noContent().build();
-    }
+        return Response.ok()
+                .entity("{\"message\": \"Room " + roomId + " has been successfully deleted.\"}")
+                .type(MediaType.APPLICATION_JSON)
+                .build();
+}
 
     private boolean isBlank(String value) {
         return value == null || value.trim().isEmpty();
