@@ -75,3 +75,71 @@ Then after running it should direct to a web page with the expected output.
 
 Note - Important rebuild order: Always Stop Tomcat → Clean and Build → Start Tomcat → Run project. Never rebuild while Tomcat is running.
 
+
+API Endpoints
+
+Method           Endpoint                                 Description
+GET             /api/v1/                                  Discovery endpoint — API metadata
+GET             /api/v1/rooms                             Get all rooms
+POST            /api/v1/rooms                             Create a new room
+GET             /api/v1/rooms/{roomId}                    Get room by ID
+DELETE          /api/v1/rooms/{roomId}                    Delete a room (blocked if sensors assigned)
+GET             /api/v1/sensors                           Get all sensors
+GET             /api/v1/sensors?type={type}               Filter sensors by type
+POST            /api/v1/sensors                           Register a new sensor
+GET             /api/v1/sensors/{sensorId}                Get sensor by ID
+GET             /api/v1/sensors/{sensorId}/readings       Get reading history for sensor
+POST            /api/v1/sensors/{sensorId}/readings       Add a new reading for sensor
+
+
+
+Sample curl Commands
+
+1. Discovery Endpoint
+bashcurl -X GET http://localhost:8081/smart-campus/api/v1/
+
+2. Create a Room
+bashcurl -X POST http://localhost:8081/smart-campus/api/v1/rooms \
+  -H "Content-Type: application/json" \
+  -d '{"id":"LIB-301","name":"Library Quiet Study","capacity":50}'
+   
+3. Get All Rooms
+bashcurl -X GET http://localhost:8081/smart-campus/api/v1/rooms
+
+4. Register a Sensor
+bashcurl -X POST http://localhost:8081/smart-campus/api/v1/sensors \
+  -H "Content-Type: application/json" \
+  -d '{"id":"TEMP-001","type":"Temperature","status":"ACTIVE","currentValue":22.5,"roomId":"LIB-301"}'
+   
+5. Get All Sensors
+bashcurl -X GET http://localhost:8081/smart-campus/api/v1/sensors
+
+6. Filter Sensors by Type
+bashcurl -X GET "http://localhost:8081/smart-campus/api/v1/sensors?type=Temperature"
+
+7. Add a Sensor Reading
+bashcurl -X POST http://localhost:8081/smart-campus/api/v1/sensors/TEMP-001/readings \
+  -H "Content-Type: application/json" \
+  -d '{"value":23.5}'
+
+8. Get Reading History
+bashcurl -X GET http://localhost:8081/smart-campus/api/v1/sensors/TEMP-001/readings
+
+9. Delete an Empty Room
+bashcurl -X DELETE http://localhost:8081/smart-campus/api/v1/rooms/LAB-102
+
+10. Attempt to Delete Occupied Room (409 Conflict)
+bashcurl -X DELETE http://localhost:8081/smart-campus/api/v1/rooms/LIB-301
+
+
+
+Error Responses
+
+HTTP Status                         Scenario
+400 Bad Request                     Missing required fields
+403 Forbidden                       Posting reading to MAINTENANCE sensor
+404 Not Found                       Resource does not exist
+409 Conflict                        Deleting a room that still has sensors
+415 Unsupported Media Type          Wrong Content-Type sent
+422 Unprocessable Entity            Sensor registered with non-existent roomId
+500 Internal Server Error           Unexpected server error (no stack trace exposed)
