@@ -1,4 +1,6 @@
-Smart Campus Sensor & Room Management API
+UOW ID - w2120165, IIT ID - 20240971
+
+# Smart Campus Sensor & Room Management API
 
 Overview
 
@@ -26,3 +28,7 @@ Storage - In-memory ConcurrentHashMap (no database)
 IDE - Apache NetBeans
 
 Note that need to consider - This project uses Jersey 2.35 + Tomcat 9.x to maintain compatibility with the javax.ws.rs.* namespace. Do not upgrade to Jersey 3.x or Tomcat 10.x without updating all imports to jakarta.*.
+
+
+
+
