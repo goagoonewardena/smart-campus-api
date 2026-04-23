@@ -56,7 +56,7 @@ or
 
 Option A — Using NetBeans:
 ```
-Right-click project → Clean and Build
+Right-click project - Clean and Build
 Wait for BUILD SUCCESS in the output window
 ```
 
@@ -86,7 +86,7 @@ After running the project it would direct to the web page with the expected outp
 
 **5. Access the API:**
 ```
-example - http://localhost:8081/smart-campus/api/v1/
+http://localhost:8080/smart-campus/api/v1/
 ```
 
 ```
@@ -265,3 +265,44 @@ Exposing stack traces to external clients is a serious security vulnerability. S
 Filters implement the cross-cutting concern principle — logging applies equally to every endpoint and has nothing to do with business logic. Manually inserting Logger.info() in every resource method violates the DRY (Don't Repeat Yourself) principle, clutters business logic with infrastructure concerns, and risks missing endpoints where logging is forgotten. If logging requirements change, every method would need to be updated individually. JAX-RS filters centralise this behaviour in one place, apply automatically to all current and future endpoints without any changes to resource classes, and can be enabled or disabled globally. This makes the codebase cleaner, easier to maintain, and less error-prone.
 
 ---
+
+
+## Project Structure
+
+```
+smart-campus-api/
+├── src/main/java/com/smartcampus/
+│   ├── JakartaRestConfiguration.java    # JAX-RS Application config
+│   ├── exceptions/
+│   │   ├── LinkedResourceNotFoundException.java
+│   │   ├── RoomNotEmptyException.java
+│   │   └── SensorUnavailableException.java
+│   ├── filters/
+│   │   └── ApiLoggingFilter.java        # Request/Response logging
+│   ├── mappers/
+│   │   ├── GlobalExceptionMapper.java   # 500 catch-all
+│   │   ├── LinkedResourceNotFoundExceptionMapper.java  # 422
+│   │   ├── RoomNotEmptyExceptionMapper.java            # 409
+│   │   └── SensorUnavailableExceptionMapper.java       # 403
+│   ├── model/
+│   │   ├── ApiError.java
+│   │   ├── Room.java
+│   │   ├── Sensor.java
+│   │   └── SensorReading.java
+│   ├── resources/
+│   │   ├── DiscoveryResource.java
+│   │   ├── RoomResource.java
+│   │   ├── SensorResource.java
+│   │   └── SensorReadingResource.java
+│   └── store/
+│       └── CampusDataStore.java         # In-memory data store
+├── src/main/webapp/
+│   ├── META-INF/context.xml
+│   ├── WEB-INF/web.xml
+│   └── index.html
+└── pom.xml
+```
+
+---
+
+## This project smart-campus-api is submitted as part of the coursework of 5COSC022W Client-Server Architectures at the University of Westminster. All rights reserved
